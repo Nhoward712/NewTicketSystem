@@ -80,18 +80,8 @@ namespace NewTicketSystem
             {
                 Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-12}", tasks[i].ticketNumber, tasks[i].summary, tasks[i].status,
                 tasks[i].priority, tasks[i].submittedBy, tasks[i].assignedTo, tasks[i].projectName, tasks[i].dueDate));
-
-                //Console.WriteLine("Ticket Number: " + tasks[i].ticketNumber);
-                //Console.WriteLine("Summary of Issue: " + tasks[i].summary);
-                //Console.WriteLine("Ticket Status: " + tasks[i].status);
-                //Console.WriteLine("Priority: " + tasks[i].priority);
-                //Console.WriteLine("Submitted By: " + tasks[i].submittedBy);
-                //Console.WriteLine("Ticket is assigned to: " + tasks[i].assignedTo);
-                //Console.WriteLine("People watching the ticket: " + tasks[i].watching);
-                //Console.WriteLine("Project Name: " + tasks[i].projectName);
-                //Console.WriteLine("Due Date: " + tasks[i].dueDate);
-                //Console.WriteLine("");
             }
+            Console.WriteLine("");
         }
     }
 }
