@@ -15,7 +15,8 @@ namespace NewTicketSystem
                     Console.WriteLine("Menu:");
                     Console.WriteLine("(1) Create a New Ticket");
                     Console.WriteLine("(2) List Current Tickets");
-                    Console.WriteLine("(3) Exit Program");
+                    Console.WriteLine("(3) Search Tickets");
+                    Console.WriteLine("(4) Exit Program");
                     choice = Console.ReadLine();
                 } while (choice != "1" && choice != "2" && choice != "3");
                 //modify input for defining what type of ticket it is. - done
@@ -35,7 +36,11 @@ namespace NewTicketSystem
                     enhance.ListTickets();
                     task.ListTickets();
                 }
-            } while (choice != "3");
+                if (choice == "3")
+                {
+                    SearchTicket.Search();
+                }
+            } while (choice != "4");
         }
     }
 }

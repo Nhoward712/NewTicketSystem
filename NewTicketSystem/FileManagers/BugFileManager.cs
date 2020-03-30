@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NewTicketSystem
 {
@@ -61,18 +62,29 @@ namespace NewTicketSystem
         public void ListTickets()
         {
             readBugs();
+            Console.WriteLine("\n\nBUG TICKETS");
+            Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", "ID", "Summary", "Status",
+            "Priority", "Submitted By", "Assigned To", "Severity"));
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
             for (int i = 0; i < bug.Count; i++)
             {
-                Console.WriteLine("Ticket Number: " + bug[i].ticketNumber);
-                Console.WriteLine("Summary of Issue: " + bug[i].summary);
-                Console.WriteLine("Ticket Status: " + bug[i].status);
-                Console.WriteLine("Priority: " + bug[i].priority);
-                Console.WriteLine("Submitted By: " + bug[i].submittedBy);
-                Console.WriteLine("Ticket is assigned to: " + bug[i].assignedTo);
-                Console.WriteLine(" Who is watching the ticket? " + bug[i].watching);
-                Console.WriteLine("What is the Severity? " + bug[i].Severity);
-                Console.WriteLine("");
+                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", bug[i].ticketNumber, bug[i].summary, bug[i].status,
+                bug[i].priority, bug[i].submittedBy, bug[i].assignedTo, bug[i].Severity));
+
             }
+        }
+        public void listStatus(string keyword)
+        {
+            var bugs = bug.Where(b => b.status.Contains("Open"));
+            Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}\n\n", "ID", "Summary","Status",
+                "Priority","Submitted By", "Assigned To","Severity"));
+            for (int i = 0; i < bugs.Count(); i++)
+            {
+                Console.WriteLine("Test");
+                Console.WriteLine(String.Format("{0,-4} {1,-60} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}\n\n", bug[i].ticketNumber, bug[i].summary, bug[i].status,
+                bug[i].priority, bug[i].submittedBy, bug[i].assignedTo, bug[i].Severity));
+            }
+            ;
         }
 
     }
