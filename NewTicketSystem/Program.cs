@@ -18,7 +18,7 @@ namespace NewTicketSystem
                     Console.WriteLine("(3) Search Tickets");
                     Console.WriteLine("(4) Exit Program");
                     choice = Console.ReadLine();
-                } while (choice != "1" && choice != "2" && choice != "3");
+                } while (choice != "1" && choice != "2" && choice != "3" && choice != "4");
                 //modify input for defining what type of ticket it is. - done
                 if (choice == "1")
                 {
@@ -32,9 +32,9 @@ namespace NewTicketSystem
                     BugFileManager bug = new BugFileManager();
                     EnhanceFileManager enhance = new EnhanceFileManager();
                     TaskFileManager task = new TaskFileManager();
-                    bug.ListTickets();
-                    enhance.ListTickets();
-                    task.ListTickets();
+                    bug.List("","");
+                    enhance.List("", "");
+                    task.List("", "");
                 }
                 if (choice == "3")
                 {

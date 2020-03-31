@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NewTicketSystem
 {
@@ -62,20 +63,45 @@ namespace NewTicketSystem
             }
             return a;
         }
-        public void ListTickets()
+
+        public void List(string type, string keyword)
         {
             readEnhancements();
+            var name = enhance.Where(b => b.status.Contains(keyword));
+
+            switch (type)
+            {
+                case "status":
+                    name = enhance.Where(b => b.status.Contains(keyword));
+                    break;
+                case "priority":
+                    name = enhance.Where(b => b.priority.Contains(keyword));
+                    break;
+                case "submitter":
+                    name = enhance.Where(b => b.submittedBy.Contains(keyword));
+                    break;
+                default:
+                    name = enhance.Where(b => b.ticketNumber > 0);
+                    break;
+            }
             Console.WriteLine("\n\nENHANCEMENT TICKETS");
+            Console.WriteLine("Number Of Enhancement Results: " + name.Count());
             Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12} {7,-10} {8,-20} {9,-10} ", "ID", "Summary", "Status",
-            "Priority", "Submitted By", "Assigned To", "Software", "Cost","Reason", "Estimate"));
+            "Priority", "Submitted By", "Assigned To", "Software", "Cost", "Reason", "Estimate"));
+
             Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-            for (int i = 0; i < enhance.Count; i++)
+            foreach (Enhancement enhance in name)
             {
-                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12} {7,-10} {8,-20} {9,-10}", enhance[i].ticketNumber, enhance[i].summary, enhance[i].status,
-                enhance[i].priority, enhance[i].submittedBy, enhance[i].assignedTo, enhance[i].Software, enhance[i].Cost,enhance[i].Reason,enhance[i].Estimate));
+                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12} {7,-10} {8,-20} {9,-10}", 
+                    enhance.ticketNumber, enhance.summary, enhance.status,
+                    enhance.priority, enhance.submittedBy, enhance.assignedTo, 
+                    enhance.Software, enhance.Cost, enhance.Reason,
+                    enhance.Estimate));
 
             }
+
+            Console.WriteLine("");
         }
     }
 }

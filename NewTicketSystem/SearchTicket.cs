@@ -14,8 +14,7 @@ namespace NewTicketSystem
             TaskFileManager task = new TaskFileManager();
             do
             {
-                Console.WriteLine("What do you want to seach for? (s)tatus, (p)riority or (s)ubmitter");
-                Console.WriteLine("Search by: ");
+                Console.WriteLine("What do you want to search for? ");
                 Console.WriteLine("(1) Status");
                 Console.WriteLine("(2) Priority");
                 Console.WriteLine("(3) Submitter");
@@ -24,20 +23,31 @@ namespace NewTicketSystem
             } while (choice != "1" && choice != "2" && choice != "3");
             switch (choice)
             {
-
                 case "1":
+                    keyword = "Closed";
                     Console.WriteLine("Search for:");
                     Console.WriteLine("(1) Open Tickets");
                     Console.WriteLine("(2) Closed Tickets");
                     keyword = Console.ReadLine();
-                    var key = keyword == "1" ? keyword = "Open" : "Closed";
-                    bug.listStatus(keyword);
+                    if (keyword == "1")
+                        keyword = "Open";
+                    bug.List("status",keyword);
+                    task.List("status",keyword);
+                    enhance.List("status",keyword);
                     break;
                 case "2":
-                    Console.WriteLine("What is the Keyword you want to search for? ");
+                    Console.WriteLine("What priority you want to search for? High, Normal, or Low?");
                     keyword = Console.ReadLine();
+                    bug.List("priority", keyword);
+                    task.List("priority", keyword);
+                    enhance.List("priority", keyword);
                     break;
                 case "3":
+                    Console.WriteLine("Which submitter you want to search for? ");
+                    keyword = Console.ReadLine();
+                    bug.List("submitter", keyword);
+                    task.List("submitter", keyword);
+                    enhance.List("submitter", keyword);
                     break;
 
             }

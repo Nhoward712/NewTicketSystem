@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace NewTicketSystem
@@ -68,19 +69,43 @@ namespace NewTicketSystem
             }
             return a;
         }
-        public void ListTickets()
+
+        public void List(string type, string keyword)
         {
             readTask();
+            var name = tasks.Where(b => b.status.Contains(keyword));
+
+            switch (type)
+            {
+                case "status":
+                    name = tasks.Where(b => b.status.Contains(keyword));
+                    break;
+                case "priority":
+                    name = tasks.Where(b => b.priority.Contains(keyword));
+                    break;
+                case "submitter":
+                    name = tasks.Where(b => b.submittedBy.Contains(keyword));
+                    break;
+                default:
+                    name = tasks.Where(b => b.ticketNumber > 0);
+                    break;
+            }
             Console.WriteLine("\n\nTASK TICKETS");
+            Console.WriteLine("Number Of Task Results: " + name.Count());
             Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-10}", "ID", "Summary", "Status",
             "Priority", "Submitted By", "Assigned To", "Project Name", "Due Date"));
+            
+
             Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-            for (int i = 0; i < tasks.Count; i++)
+            foreach (Task tasks in name)
             {
-                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-12}", tasks[i].ticketNumber, tasks[i].summary, tasks[i].status,
-                tasks[i].priority, tasks[i].submittedBy, tasks[i].assignedTo, tasks[i].projectName, tasks[i].dueDate));
+                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-12}", 
+                    tasks.ticketNumber, tasks.summary, tasks.status,
+                    tasks.priority, tasks.submittedBy, tasks.assignedTo,
+                    tasks.projectName, tasks.dueDate));
             }
+
             Console.WriteLine("");
         }
     }

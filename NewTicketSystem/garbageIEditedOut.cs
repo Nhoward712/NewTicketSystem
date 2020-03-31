@@ -193,4 +193,48 @@ namespace NewTicketSystem
     //    }
     //    return ticketNumber;
     //}
+    //public void ListTickets()
+    //{
+    //    readBugs();
+    //    Console.WriteLine("\n\nBUG TICKETS");
+    //    Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", "ID", "Summary", "Status",
+    //    "Priority", "Submitted By", "Assigned To", "Severity"));
+    //    Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    //    for (int i = 0; i < bug.Count; i++)
+    //    {
+    //        Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", bug[i].ticketNumber, bug[i].summary, bug[i].status,
+    //        bug[i].priority, bug[i].submittedBy, bug[i].assignedTo, bug[i].Severity));
+
+    //    }
+    //}
+    //public void ListTickets()
+    //{
+    //    readTask();
+    //    Console.WriteLine("\n\nTASK TICKETS");
+    //    Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-10}", "ID", "Summary", "Status",
+    //    "Priority", "Submitted By", "Assigned To", "Project Name", "Due Date"));
+    //    Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    //    for (int i = 0; i < tasks.Count; i++)
+    //    {
+    //        Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-20} {7,-12}", tasks[i].ticketNumber, tasks[i].summary, tasks[i].status,
+    //        tasks[i].priority, tasks[i].submittedBy, tasks[i].assignedTo, tasks[i].projectName, tasks[i].dueDate));
+    //    }
+    //    Console.WriteLine("");
+    //}
+    //public void ListTickets()
+    //{
+    //    readEnhancements();
+    //    Console.WriteLine("\n\nENHANCEMENT TICKETS");
+    //    Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12} {7,-10} {8,-20} {9,-10} ", "ID", "Summary", "Status",
+    //    "Priority", "Submitted By", "Assigned To", "Software", "Cost","Reason", "Estimate"));
+    //    Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+    //    for (int i = 0; i < enhance.Count; i++)
+    //    {
+    //        Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12} {7,-10} {8,-20} {9,-10}", enhance[i].ticketNumber, enhance[i].summary, enhance[i].status,
+    //        enhance[i].priority, enhance[i].submittedBy, enhance[i].assignedTo, enhance[i].Software, enhance[i].Cost,enhance[i].Reason,enhance[i].Estimate));
+
+    //    }
+    //}
 }

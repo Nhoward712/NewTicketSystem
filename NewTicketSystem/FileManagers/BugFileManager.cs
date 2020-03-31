@@ -59,32 +59,42 @@ namespace NewTicketSystem
             }
             return a;
         }
-        public void ListTickets()
+
+        public void List(string type, string keyword)
         {
             readBugs();
+            var name = bug.Where(b => b.status.Contains(keyword));
+
+            switch (type)
+            {
+                case "status":
+                    name = bug.Where(b => b.status.Contains(keyword));
+                    break;
+                case "priority":
+                    name = bug.Where(b => b.priority.Contains(keyword));
+                    break;
+                case "submitter":
+                    name = bug.Where(b => b.submittedBy.Contains(keyword));
+                    break;
+                default:
+                    name = bug.Where(b => b.ticketNumber > 0);
+                    break;
+            }
             Console.WriteLine("\n\nBUG TICKETS");
+            Console.WriteLine("Number Of Bug Results: " + name.Count());
             Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", "ID", "Summary", "Status",
             "Priority", "Submitted By", "Assigned To", "Severity"));
             Console.WriteLine("-------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            for (int i = 0; i < bug.Count; i++)
-            {
-                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}", bug[i].ticketNumber, bug[i].summary, bug[i].status,
-                bug[i].priority, bug[i].submittedBy, bug[i].assignedTo, bug[i].Severity));
 
-            }
-        }
-        public void listStatus(string keyword)
-        {
-            var bugs = bug.Where(b => b.status.Contains("Open"));
-            Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}\n\n", "ID", "Summary","Status",
-                "Priority","Submitted By", "Assigned To","Severity"));
-            for (int i = 0; i < bugs.Count(); i++)
+            foreach(Bugs bug in name)
             {
-                Console.WriteLine("Test");
-                Console.WriteLine(String.Format("{0,-4} {1,-60} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}\n\n", bug[i].ticketNumber, bug[i].summary, bug[i].status,
-                bug[i].priority, bug[i].submittedBy, bug[i].assignedTo, bug[i].Severity));
+                Console.WriteLine(String.Format("{0,-4} {1,-40} {2,-8} {3,-10} {4,-20} {5,-20} {6,-12}",
+                   bug.ticketNumber, bug.summary, bug.status,
+                   bug.priority, bug.submittedBy, bug.assignedTo,
+                   bug.Severity));
             }
-            ;
+
+            Console.WriteLine("");
         }
 
     }
